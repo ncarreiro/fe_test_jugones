@@ -32,15 +32,28 @@ class App extends PureComponent {
           y una lista con sus nombres. 
           ** Los comentarios de los ejercicios no los borres.
         */}
-          <h3>Los jugadores:</h3>
-          <ul>
+          <ul className="App-players">
             {/* 
             TODO ejercicio 3
             Vamos a pasar a darle diseño. Crea el diseño propuesto en el readme con los requerimientos que se necesite.
             Guiate por las imágenes.
            */}
             {players.map(player => (
-              <li key={player.id}>{player.name}</li>
+              <li className="App-player" key={player.id}>
+                <div className="App-player-img-data-container">
+                  <img className="App-player-img" src={player.img} />
+                  <div className="App-player-data">
+                    <span className="App-player-name">{player.name}</span>
+                    <span className="App-player-position">
+                      {player.position}
+                    </span>
+                    <div className="App-player-team-name">
+                      {player.teamName}
+                    </div>
+                  </div>
+                </div>
+                <img className="App-player-shield" src={player.teamShield} />
+              </li>
             ))}
           </ul>
         </div>

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   height: 100%;
   min-height: 400px;
@@ -18,7 +22,7 @@
   background-color: #222;
   color: #f8f8f8;
   font-size: 6vh;
-  box-shadow: 0px 4px 4vh 4px rgba(34,34,34,0.9);
+  box-shadow: 0px 4px 4vh 4px rgba(34, 34, 34, 0.9);
   z-index: 2;
 }
 
@@ -49,4 +53,83 @@
 
 .App-teams {
   flex-direction: column;
+}
+
+.App-players {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.App-player {
+  display: flex;
+  flex: 1 0 25%;
+  justify-content: center;
+  margin: 30px;
+  padding: 20px;
+  min-width: 280px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  position: relative;
+}
+
+.App-player-img-data-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-player-img {
+  margin-bottom: 15px;
+  object-fit: cover;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+}
+
+.App-player-name-position {
+  margin-bottom: 5px;
+}
+
+.App-player-name {
+  font-size: 22px;
+  margin-right: 5px;
+}
+
+.App-player-position {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.App-player-shield {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  max-height: 35px;
+}
+
+@media (max-width: 600px) {
+  .App-player {
+    display: flex;
+    flex: 1 0 25%;
+    justify-content: space-between;
+  }
+
+  .App-player-img {
+    margin-bottom: 0;
+    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .App-player-data {
+    text-align: left;
+  }
+
+  .App-player-img-data-container {
+    flex-direction: row;
+    align-items: center;
+  }
 }

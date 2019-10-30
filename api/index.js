@@ -246,6 +246,8 @@ app.get("/players", function(req, res) {
       player.img = player.img || player.url;
       delete player.url;
       player.teamId = team.id;
+      player.teamName = team.name;
+      player.teamShield = team.shield;
       players.push(player);
     });
   });
