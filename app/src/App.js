@@ -6,27 +6,24 @@ const domain = "http://localhost:3001";
 
 class App extends PureComponent {
   state = {
-    teams: []
+    players: []
   };
 
   componentDidMount() {
-    fetch(`${domain}/teams`)
+    fetch(`${domain}/players`)
       .then(response => {
         return response.json();
       })
-      .then(teams => {
-        this.setState({ teams });
+      .then(players => {
+        this.setState({ players });
       });
   }
 
   render() {
-    const { teams } = this.state;
+    const { players } = this.state;
 
     return (
       <div className="App">
-        <header className="App-heading App-flex">
-          <h2>Bienvenido a la prueba de los equipos</h2>
-        </header>
         <div className="App-teams App-flex">
           {/* 
           TODO ejercicio 2
@@ -35,23 +32,17 @@ class App extends PureComponent {
           y una lista con sus nombres. 
           ** Los comentarios de los ejercicios no los borres.
         */}
-          <h3>Los equipos:</h3>
+          <h3>Los jugadores:</h3>
           <ul>
             {/* 
             TODO ejercicio 3
             Vamos a pasar a darle diseño. Crea el diseño propuesto en el readme con los requerimientos que se necesite.
             Guiate por las imágenes.
            */}
-            {teams.map(team => (
-              <li key={team.id}>{team.name}</li>
+            {players.map(player => (
+              <li key={player.id}>{player.name}</li>
             ))}
           </ul>
-        </div>
-        <div className="App-instructions App-flex">
-          <img className="App-logo" src={reactSvg} />
-          <p>
-            Edit <code>src/App.js</code> and save to hot reload your changes.
-          </p>
         </div>
       </div>
     );
