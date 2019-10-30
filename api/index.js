@@ -224,7 +224,33 @@ app.get("/players", function(req, res) {
   // ]
   // TIP: familiarizate primero con los objetos de los equipos: var madrid, barcelona y atletico.
   // TIP2: asegurate que position no es el código de la posición, si no el string
-  res.json({});
+  var madridTemp = { ...madrid };
+  var barsaTemp = { ...barcelona };
+  var atleticoTemp = { ...atletico };
+
+  atleticoTemp.players.forEach(
+    player => (player.img = atleticoImages[player.id])
+  );
+
+  var teamsTemp = [madridTemp, barsaTemp, atleticoTemp];
+
+  var players = [];
+
+  teamsTemp.forEach(team => {
+    team.players.forEach(player => {
+      delete player.id;
+      delete player.price;
+      if (Number.isInteger(player.position)) {
+        player.position = POSITIONS_STRING[player.position];
+      }
+      player.img = player.img || player.url;
+      delete player.url;
+      player.teamId = team.id;
+      players.push(player);
+    });
+  });
+
+  res.json(players);
 });
 
 app.get("/pichichis", function(req, res) {
