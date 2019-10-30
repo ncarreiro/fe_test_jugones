@@ -238,7 +238,6 @@ app.get("/players", function(req, res) {
 
   teamsTemp.forEach(team => {
     team.players.forEach(player => {
-      delete player.id;
       delete player.price;
       if (Number.isInteger(player.position)) {
         player.position = POSITIONS_STRING[player.position];

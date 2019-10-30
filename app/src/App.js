@@ -32,6 +32,9 @@ class App extends PureComponent {
           y una lista con sus nombres. 
           ** Los comentarios de los ejercicios no los borres.
         */}
+          <div className="App-header">
+            <button className="App-header-button">Pichichis</button>
+          </div>
           <ul className="App-players">
             {/* 
             TODO ejercicio 3
