@@ -255,7 +255,29 @@ app.get("/players", function(req, res) {
 });
 
 app.get("/pichichis", function(req, res) {
-  res.json(pichichis);
+  // Generating a temp Array of players
+  var playersTemp = [
+    ...madrid.players,
+    ...barcelona.players,
+    ...atletico.players
+  ];
+
+  // Generating an Array of goals
+  var goals = pichichis.map(playerGoals => {
+    // Unifying nulls and strings to integrals
+    playerGoals.goals = parseInt(playerGoals.goals) || 0;
+
+    // Parsing each player to match the player goals object playerId with the player id
+    playersTemp.forEach(player => {
+      if (player.id === playerGoals.playerId) {
+        playerGoals.name = player.name;
+      }
+    });
+
+    return playerGoals;
+  });
+
+  res.json(goals);
 });
 
 app.post("/transfer", function(req, res) {

@@ -13,7 +13,8 @@ class App extends PureComponent {
   }
   state = {
     showModal: false,
-    players: []
+    players: [],
+    pichichis: []
   };
 
   showModal() {
@@ -32,14 +33,37 @@ class App extends PureComponent {
       .then(players => {
         this.setState({ players });
       });
+    fetch(`${domain}/pichichis`)
+      .then(response => {
+        return response.json();
+      })
+      .then(pichichis => {
+        this.setState({ pichichis });
+      });
   }
 
   render() {
-    const { players, showModal } = this.state;
+    const { players, pichichis, showModal } = this.state;
 
     return (
       <div className="App">
-        {showModal && <Modal closeModal={this.closeModal} />}
+        {showModal && (
+          <Modal closeModal={this.closeModal}>
+            <h1 className="App-pichichis-title">Los pichichis:</h1>
+            <ul className="App-pichichis-list">
+              {pichichis.map(pichichi => (
+                <li key={pichichi.playerId} className="App-pichichis-item">
+                  <span className="App-pichichis-item-name">
+                    {pichichi.name}
+                  </span>
+                  <span className="App-pichichis-item-goals">
+                    {pichichi.goals}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Modal>
+        )}
         <div className="App-teams App-flex">
           {/* 
           TODO ejercicio 2
