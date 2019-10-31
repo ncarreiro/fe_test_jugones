@@ -2,12 +2,27 @@ import reactSvg from "./react.svg";
 import "./App.css";
 
 import React, { PureComponent } from "react";
+import Modal from "./components/Modal";
 const domain = "http://localhost:3001";
 
 class App extends PureComponent {
+  constructor() {
+    super();
+    this.showModal = this.showModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
   state = {
+    showModal: false,
     players: []
   };
+
+  showModal() {
+    this.setState({ showModal: true });
+  }
+
+  closeModal() {
+    this.setState({ showModal: false });
+  }
 
   componentDidMount() {
     fetch(`${domain}/players`)
@@ -20,10 +35,11 @@ class App extends PureComponent {
   }
 
   render() {
-    const { players } = this.state;
+    const { players, showModal } = this.state;
 
     return (
       <div className="App">
+        {showModal && <Modal closeModal={this.closeModal} />}
         <div className="App-teams App-flex">
           {/* 
           TODO ejercicio 2
@@ -33,7 +49,9 @@ class App extends PureComponent {
           ** Los comentarios de los ejercicios no los borres.
         */}
           <div className="App-header">
-            <button className="App-header-button">Pichichis</button>
+            <button onClick={this.showModal} className="App-header-button">
+              Pichichis
+            </button>
           </div>
           <ul className="App-players">
             {/* 
